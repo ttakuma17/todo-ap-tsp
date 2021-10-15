@@ -12,4 +12,6 @@
    "css.validate": false, のみ.vscode > settings.json へ記載
 
 3. 正常な挙動をすることを確認
-   TailwindCSS のセットアップは完了とし、マージする
+   TailwindCSS のセットアップは完了とし、マージする → 完了
+
+4
