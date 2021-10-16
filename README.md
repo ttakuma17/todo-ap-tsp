@@ -12,6 +12,24 @@
    "css.validate": false, のみ.vscode > settings.json へ記載
 
 3. 正常な挙動をすることを確認
-   TailwindCSS のセットアップは完了とし、マージする → 完了
+   TailwindCSS のセットアップは完了とし、マージする
 
-4
+4. WL.Header コンポーネントと Footer コンポーネントを作成する
+
+memo 化していると displayname が出てくるが、後ほどコンポーネントの最適化が必要
+react-router-dom が必要なのでライブラリインストール
+
+`yarn add react-router-dom`のインストール後
+`yarn add @types/react-router-dom --dev`で型定義ファイルをインストール
+
+HerosIcon を利用しているので、インストールする
+`npm install @heroicons/react`
+https://github.com/tailwindlabs/heroicons
+
+react-router-dom の型宣言エラーが出るな。。。。さっきインストールしたのに。。。
+Package.json にも存在することを確認
+
+→ react-router 自体がインストールされていなかったことでエラーが発生していた
+
+Example.tsx で HeadlessUI が必要なのでインストール
+https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-react
