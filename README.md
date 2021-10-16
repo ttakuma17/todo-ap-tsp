@@ -28,8 +28,26 @@ https://github.com/tailwindlabs/heroicons
 
 react-router-dom の型宣言エラーが出るな。。。。さっきインストールしたのに。。。
 Package.json にも存在することを確認
-
 → react-router 自体がインストールされていなかったことでエラーが発生していた
 
 Example.tsx で HeadlessUI が必要なのでインストール
 https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-react
+
+一旦、IncompleteTodo.tsx PushButton.tsx の完成を目指す
+その後他のコンポーネントに展開する
+
+recoil のインストール
+`yarn add recoil`
+https://github.com/facebookexperimental/Recoil
+
+Recoil × Typescript の記事
+https://zenn.dev/nekoniki/scraps/e2ad516d7da7d3
+selector を使えば、Atom に初期値を設定できるはず
+
+axios のインストール
+`yarn add axios`
+https://github.com/axios/axios
+
+axios の型定義
+https://qiita.com/keyakko/items/ec536545d2faa9cabc84
+useGetTodo のレスポンスデータへの型定義が必要になる
