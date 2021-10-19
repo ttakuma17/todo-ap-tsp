@@ -2,7 +2,7 @@
 import { useRecoilState } from 'recoil';
 import { useCallback } from 'react';
 
-// import { inputTodoState } from '../components/store/inputTodoState';
+import { inputTodoState } from '../components/store/inputTodoState';
 import { incompleteTodoState } from '../components/store/incompleteTodoState';
 import { pendingTodoState } from '../components/store/pendingTodoState';
 import { workingTodoState } from '../components/store/workingTodoState';
@@ -12,7 +12,7 @@ import { workingTodoState } from '../components/store/workingTodoState';
 
 export const useMoveItemFunc = () => {
   // 利用するグローバルstate
-  // const [todoText, setTodoText] = useRecoilState(inputTodoState);
+  const [todoText, setTodoText] = useRecoilState(inputTodoState);
   const [incompleteTodo, setIncompleteTodo] =
     useRecoilState(incompleteTodoState);
   const [workingTodo, setWorkingTodo] = useRecoilState(workingTodoState);
@@ -24,16 +24,16 @@ export const useMoveItemFunc = () => {
   // 既存のアイテム移動系の処理
   // incompleteTodoへの処理
   // incompleteからworkingへ移動する処理を実装する
-  // const addToNewIncompleteTodo = useCallback(() => {
-  //   if (todoText === '') {
-  //     toastNotify('InputNone');
-  //     return;
-  //   }
-  //   const newIncompleteTodo = [...incompleteTodo, todoText];
-  //   setIncompleteTodo(newIncompleteTodo);
-  //   setTodoText('');
-  //   toastNotify('Input');
-  // }, [incompleteTodo, todoText]);
+  const addToNewIncompleteTodo = useCallback(() => {
+    if (todoText === '') {
+      // toastNotify('InputNone');
+      return;
+    }
+    const newIncompleteTodo: any = [...incompleteTodo, todoText];
+    setIncompleteTodo(newIncompleteTodo);
+    setTodoText('');
+    // toastNotify('Input');
+  }, [incompleteTodo, todoText]);
 
   const incompleteToWorking = useCallback(
     (index) => {
@@ -158,7 +158,7 @@ export const useMoveItemFunc = () => {
   // );
 
   return {
-    // addToNewIncompleteTodo,
+    addToNewIncompleteTodo,
     incompleteToWorking,
     incompleteToPending,
     // workingToPending,

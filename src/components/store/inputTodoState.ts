@@ -1,10 +1,8 @@
 import { atom } from 'recoil';
 
-import { Todo } from '../../types/todo';
-
-export const inputTodoState = atom<Array<Todo>>({
+export const inputTodoState = atom<string>({
   key: 'inputTodoState',
-  default: [],
+  default: '',
 });
 
 // defaultの初期値を空文字列に設定

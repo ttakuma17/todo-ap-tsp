@@ -10,6 +10,7 @@ export const PushButton = memo((props: Props) => {
   return (
     <>
       <button
+        type="button"
         className="text-white rounded-full m-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900"
         onClick={onClickAction}>
         {children}
