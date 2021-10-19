@@ -1,8 +1,6 @@
 import { atom } from 'recoil';
 
-import { Todo } from '../../types/todo';
-
-export const workingTodoState = atom<Array<Todo>>({
+export const workingTodoState = atom<Array<string>>({
   key: 'workingTodoState',
   default: [],
 });

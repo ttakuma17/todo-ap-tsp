@@ -1,12 +1,18 @@
 import axios from 'axios';
 import { useCallback } from 'react';
 
-import { Todo } from '../types/todo';
+type Todo = {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+  index: number; // indexの型定義用
+};
 
 export const useGetTodos = () => {
   const getJsonData = useCallback((index) => {
     const data = axios
-      .get<Array<Todo>>('https://jsonplaceholder.typicode.com/todos')
+      .get<Todo>('https://jsonplaceholder.typicode.com/todos')
       .then((res) => {
         const result = res.data[index].title;
         return result;

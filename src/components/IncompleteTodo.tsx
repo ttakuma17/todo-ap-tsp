@@ -7,19 +7,17 @@ import { useMoveItemFunc } from '../hooks/useMoveItemFunc';
 
 import { PushButton } from './PushButton';
 
-import { Todo } from '../types/todo';
-
 export const IncompleteTodo = memo(() => {
   const { getJsonData } = useGetTodos();
   const [incompleteTodo, setIncompleteTodo] =
-    useRecoilState<Array<Todo>>(incompleteTodoState);
+    useRecoilState(incompleteTodoState);
   const { incompleteToWorking, incompleteToPending, incomleteItemDelete } =
     useMoveItemFunc();
 
   // // incompleteTodoの初期値を設定
   useEffect(() => {
-    getJsonData(0).then((data) => {
-      const initIncompleteTodo: any = [...incompleteTodo, data, data];
+    getJsonData(0).then((data: any) => {
+      const initIncompleteTodo: Array<string> = [...incompleteTodo, data, data];
       setIncompleteTodo(initIncompleteTodo);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,7 +29,7 @@ export const IncompleteTodo = memo(() => {
         Todo List
       </p>
       <ul>
-        {incompleteTodo.map((todo: any, index: number) => {
+        {incompleteTodo.map((todo: string, index: number) => {
           return (
             <li key={todo}>
               <div className="flex">

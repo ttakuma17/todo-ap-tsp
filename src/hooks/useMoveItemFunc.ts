@@ -12,11 +12,13 @@ import { workingTodoState } from '../components/store/workingTodoState';
 
 export const useMoveItemFunc = () => {
   // 利用するグローバルstate
-  const [todoText, setTodoText] = useRecoilState(inputTodoState);
+  const [todoText, setTodoText] = useRecoilState<string>(inputTodoState);
   const [incompleteTodo, setIncompleteTodo] =
-    useRecoilState(incompleteTodoState);
-  const [workingTodo, setWorkingTodo] = useRecoilState(workingTodoState);
-  const [pendingTodo, setPendingTodo] = useRecoilState(pendingTodoState);
+    useRecoilState<Array<string>>(incompleteTodoState);
+  const [workingTodo, setWorkingTodo] =
+    useRecoilState<Array<string>>(workingTodoState);
+  const [pendingTodo, setPendingTodo] =
+    useRecoilState<Array<string>>(pendingTodoState);
   // const [completeTodo, setCompleteTodo] = useRecoilState(completeTodoState);
   // メッセージ表示用の読み込み
   // const { toastNotify } = useShowMessage();
@@ -29,7 +31,7 @@ export const useMoveItemFunc = () => {
       // toastNotify('InputNone');
       return;
     }
-    const newIncompleteTodo: any = [...incompleteTodo, todoText];
+    const newIncompleteTodo: Array<string> = [...incompleteTodo, todoText];
     setIncompleteTodo(newIncompleteTodo);
     setTodoText('');
     // toastNotify('Input');
@@ -37,9 +39,9 @@ export const useMoveItemFunc = () => {
 
   const incompleteToWorking = useCallback(
     (index) => {
-      const newIncompleteTodo = [...incompleteTodo];
+      const newIncompleteTodo: Array<string> = [...incompleteTodo];
       newIncompleteTodo.splice(index, 1);
-      const newWorkingTodoForIncomplete = [
+      const newWorkingTodoForIncomplete: Array<string> = [
         ...workingTodo,
         incompleteTodo[index],
       ];
@@ -52,9 +54,9 @@ export const useMoveItemFunc = () => {
   // incompleteからpendingへ移動する処理
   const incompleteToPending = useCallback(
     (index) => {
-      const newIncompleteTodo = [...incompleteTodo];
+      const newIncompleteTodo: Array<string> = [...incompleteTodo];
       newIncompleteTodo.splice(index, 1);
-      const newPendingTodoforIncomplete = [
+      const newPendingTodoforIncomplete: Array<string> = [
         ...pendingTodo,
         incompleteTodo[index],
       ];
@@ -67,7 +69,7 @@ export const useMoveItemFunc = () => {
   // incompleteから削除する処理
   const incomleteItemDelete = useCallback(
     (index) => {
-      const newIncompleteTodo = [...incompleteTodo];
+      const newIncompleteTodo: Array<string> = [...incompleteTodo];
       newIncompleteTodo.splice(index, 1);
       setIncompleteTodo(newIncompleteTodo);
       // toastNotify('Delete');
