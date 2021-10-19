@@ -1,6 +1,8 @@
 import { atom } from 'recoil';
 
-export const incompleteTodoState = atom<Array<string>>({
+import { Todo } from '../../types/todo';
+
+export const incompleteTodoState = atom<Array<Todo>>({
   key: 'incompleteTodoState',
   default: [],
 });
