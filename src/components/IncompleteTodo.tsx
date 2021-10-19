@@ -1,5 +1,4 @@
 import React, { memo, useEffect } from 'react';
-// useEffect; を後ほど追加
 import { useRecoilState } from 'recoil';
 import { incompleteTodoState } from './store/incompleteTodoState';
 
@@ -23,7 +22,6 @@ export const IncompleteTodo = memo(() => {
       const initIncompleteTodo: any = [...incompleteTodo, data, data];
       setIncompleteTodo(initIncompleteTodo);
     });
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
