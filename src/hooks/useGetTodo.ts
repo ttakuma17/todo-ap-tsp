@@ -15,7 +15,7 @@ export const useGetTodo = () => {
     axios
       .get<Array<Todo>>('https://jsonplaceholder.typicode.com/todos')
       .then((res) => setTodos(res.data))
-      .catch((err) => console.log(err));
+      .catch(() => alert('データの取得に失敗しました'));
   }, []);
   return { getTodos, todos };
 };
