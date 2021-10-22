@@ -14,33 +14,19 @@ export const IncompleteTodo = memo(() => {
   const { incompleteToWorking, incompleteToPending, incomleteItemDelete } =
     useMoveItemFunc();
 
-  // console.log(getTodos instanceof Promise); // false
-
+  // レンダリング時に1度だけ実行
+  useEffect(() => getTodos(), []);
+  // 検証ツールでネットワークの速度を制限して実行したところ
+  // 初期はUndefinedでボタンのみが表示されて、その後APIの値を取得したデータが格納された
   useEffect(() => {
-    getTodos();
-    const initIncompleteTodo: Array<string> = [todos[0].title, todos[1].title]; // 必要な要素のみ取り出し
-    console.log(initIncompleteTodo); // 取り出せたことを確認→ブラウザをリロードするとTypeエラーとなる
+    const initIncompleteTodo: Array<string> = [
+      todos[0]?.title,
+      todos[1]?.title,
+    ];
     setIncompleteTodo(initIncompleteTodo);
-  }, []);
-
-  // テスト用
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     await getTodos();
-  //     const initialValue = () => {
-  //       const initIncompleteTodo: Array<string> = [
-  //         todos[0].title,
-  //         todos[1].title,
-  //       ];
-  //       setIncompleteTodo(initIncompleteTodo);
-  //     };
-  //     await initialValue();
-  //   }
-  //   fetchData();
-  // }, []);
-
-  // console.log(incompleteTodo); // ブラウザに再読み込みをかけなければ、データの取得はできている
-
+  }, [todos]);
+  // 実行前のtodos(undifined)から、値を取得したtodosへの変更が検知されて実行される
+  // 1週目はundifinedだが、?でエラーは回避、2週目はgetTodos()を実行したからAPIのデータを取得して反映がされた
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2">
       <p className="text-white text-lg text-center bg-blue-400 border-solid border4 border-blue-400 rounded-md w-1/4">
