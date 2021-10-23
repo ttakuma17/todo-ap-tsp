@@ -8,7 +8,7 @@ import { pendingTodoState } from '../components/store/pendingTodoState';
 import { workingTodoState } from '../components/store/workingTodoState';
 import { completeTodoState } from '../components/store/completeTodoState';
 
-// import { useShowMessage } from './useShowMessage';
+import { useShowMessage } from './useShowMessage';
 
 export const useMoveItemFunc = () => {
   // 利用するグローバルstate
@@ -19,20 +19,20 @@ export const useMoveItemFunc = () => {
   const [pendingTodo, setPendingTodo] = useRecoilState(pendingTodoState);
   const [completeTodo, setCompleteTodo] = useRecoilState(completeTodoState);
   // メッセージ表示用の読み込み
-  // const { toastNotify } = useShowMessage();
+  const { toastNotify } = useShowMessage();
 
   // 既存のアイテム移動系の処理
   // incompleteTodoへの処理
   // incompleteからworkingへ移動する処理を実装する
   const addToNewIncompleteTodo = useCallback(() => {
     if (todoText === '') {
-      // toastNotify('InputNone');
+      toastNotify('InputNone');
       return;
     }
     const newIncompleteTodo: any = [...incompleteTodo, todoText];
     setIncompleteTodo(newIncompleteTodo);
     setTodoText('');
-    // toastNotify('Input');
+    toastNotify('Input');
   }, [incompleteTodo, todoText]);
 
   const incompleteToWorking = useCallback(
@@ -45,7 +45,7 @@ export const useMoveItemFunc = () => {
       ];
       setWorkingTodo(newWorkingTodoForIncomplete);
       setIncompleteTodo(newIncompleteTodo);
-      // toastNotify('Update');
+      toastNotify('Update');
     },
     [incompleteTodo, workingTodo]
   );
@@ -60,7 +60,7 @@ export const useMoveItemFunc = () => {
       ];
       setPendingTodo(newPendingTodoforIncomplete);
       setIncompleteTodo(newIncompleteTodo);
-      // toastNotify('Update');
+      toastNotify('Update');
     },
     [incompleteTodo, pendingTodo]
   );
@@ -70,7 +70,7 @@ export const useMoveItemFunc = () => {
       const newIncompleteTodo: any = [...incompleteTodo];
       newIncompleteTodo.splice(index, 1);
       setIncompleteTodo(newIncompleteTodo);
-      // toastNotify('Delete');
+      toastNotify('Delete');
     },
     [incompleteTodo]
   );
@@ -84,7 +84,7 @@ export const useMoveItemFunc = () => {
       const newPendingTodoForWorking = [...pendingTodo, workingTodo[index]];
       setPendingTodo(newPendingTodoForWorking);
       setWorkingTodo(newWorkingTodo);
-      // toastNotify('Update');
+      toastNotify('Update');
     },
     [pendingTodo, workingTodo]
   );
@@ -96,7 +96,7 @@ export const useMoveItemFunc = () => {
       const newCompleteTodo = [...completeTodo, workingTodo[index]];
       setWorkingTodo(newWorkingTodo);
       setCompleteTodo(newCompleteTodo);
-      // toastNotify('Update');
+      toastNotify('Update');
     },
     [completeTodo, workingTodo]
   );
@@ -113,7 +113,7 @@ export const useMoveItemFunc = () => {
       ];
       setIncompleteTodo(newIncompleteTodoBackFromPending);
       setPendingTodo(newPendingTodo);
-      // toastNotify('Update');
+      toastNotify('Update');
     },
     [incompleteTodo, pendingTodo]
   );
@@ -125,7 +125,7 @@ export const useMoveItemFunc = () => {
       const newWorkingTodoForPending = [...workingTodo, pendingTodo[index]];
       setWorkingTodo(newWorkingTodoForPending);
       setPendingTodo(newPendingTodo);
-      // toastNotify('Update');
+      toastNotify('Update');
     },
     [pendingTodo, workingTodo]
   );
@@ -152,7 +152,7 @@ export const useMoveItemFunc = () => {
       const newCompleteTodo = [...completeTodo];
       newCompleteTodo.splice(index, 1);
       setCompleteTodo(newCompleteTodo);
-      // toastNotify('Delete');
+      toastNotify('Delete');
     },
     [completeTodo]
   );

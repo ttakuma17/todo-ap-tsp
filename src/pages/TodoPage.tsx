@@ -1,5 +1,5 @@
 import React, { memo, VFC } from 'react';
-// import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 import { CompleteTodo } from '../components/CompleteTodo';
 import { IncompleteTodo } from '../components/IncompleteTodo';
@@ -10,7 +10,7 @@ import { WorkingTodo } from '../components/WorkingTodo';
 export const TodoPage: VFC = memo(() => {
   return (
     <div className="font-body">
-      {/* <Toaster /> */}
+      <Toaster />
       <InputTodo />
       <IncompleteTodo />
       <WorkingTodo />
