@@ -1,26 +1,13 @@
-import React, { memo, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import React, { memo } from 'react';
 
-import { pendingTodoState } from './store/pendingTodoState';
-import { useGetTodo } from '../hooks/useGetTodo';
-import { useMoveItemFunc } from '../hooks/useMoveItemFunc';
 import { PushButton } from './PushButton';
 
+import { useGetTodo } from '../hooks/useGetTodo';
+import { useMoveItemFunc } from '../hooks/useMoveItemFunc';
+
 export const PendingTodo = memo(() => {
-  const { todos, getTodos } = useGetTodo();
-  const [pendingTodo, setPendingTodo] = useRecoilState(pendingTodoState);
+  const { pendingTodo } = useGetTodo();
   const { pendingToIncomplete, pendingToWorking } = useMoveItemFunc();
-  useEffect(() => getTodos(), []);
-  useEffect(() => {
-    if (todos[5]?.title === undefined || todos[6]?.title === undefined) {
-      console.log(todos[5]?.title);
-      console.log(todos[6]?.title);
-      return;
-    } else {
-      const initPendingTodo: Array<string> = [todos[5]?.title, todos[6]?.title];
-      setPendingTodo(initPendingTodo);
-    }
-  }, [todos]);
 
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2">

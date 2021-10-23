@@ -1,32 +1,14 @@
-import React, { memo, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { incompleteTodoState } from './store/incompleteTodoState';
+import React, { memo } from 'react';
+
+import { PushButton } from './PushButton';
 
 import { useGetTodo } from '../hooks/useGetTodo';
 import { useMoveItemFunc } from '../hooks/useMoveItemFunc';
 
-import { PushButton } from './PushButton';
-
 export const IncompleteTodo = memo(() => {
-  const { todos, getTodos } = useGetTodo();
-  const [incompleteTodo, setIncompleteTodo] =
-    useRecoilState(incompleteTodoState);
+  const { incompleteTodo } = useGetTodo();
   const { incompleteToWorking, incompleteToPending, incomleteItemDelete } =
     useMoveItemFunc();
-  useEffect(() => getTodos(), []);
-  useEffect(() => {
-    if (todos[0]?.title === undefined || todos[1]?.title === undefined) {
-      console.log(todos[0]?.title);
-      console.log(todos[1]?.title);
-      return;
-    } else {
-      const initIncompleteTodo: Array<string> = [
-        todos[0]?.title,
-        todos[1]?.title,
-      ];
-      setIncompleteTodo(initIncompleteTodo);
-    }
-  }, [todos]);
 
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2">
