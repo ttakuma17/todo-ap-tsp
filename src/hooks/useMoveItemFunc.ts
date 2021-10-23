@@ -6,7 +6,7 @@ import { inputTodoState } from '../components/store/inputTodoState';
 import { incompleteTodoState } from '../components/store/incompleteTodoState';
 import { pendingTodoState } from '../components/store/pendingTodoState';
 import { workingTodoState } from '../components/store/workingTodoState';
-// import { completeTodoState } from '../components/store/completeTodoState';
+import { completeTodoState } from '../components/store/completeTodoState';
 
 // import { useShowMessage } from './useShowMessage';
 
@@ -17,7 +17,7 @@ export const useMoveItemFunc = () => {
     useRecoilState(incompleteTodoState);
   const [workingTodo, setWorkingTodo] = useRecoilState(workingTodoState);
   const [pendingTodo, setPendingTodo] = useRecoilState(pendingTodoState);
-  // const [completeTodo, setCompleteTodo] = useRecoilState(completeTodoState);
+  const [completeTodo, setCompleteTodo] = useRecoilState(completeTodoState);
   // メッセージ表示用の読み込み
   // const { toastNotify } = useShowMessage();
 
@@ -77,96 +77,96 @@ export const useMoveItemFunc = () => {
 
   // workingTodoへの処理
   // workingからpending
-  // const workingToPending = useCallback(
-  //   (index) => {
-  //     const newWorkingTodo = [...workingTodo];
-  //     newWorkingTodo.splice(index, 1);
-  //     const newPendingTodoForWorking = [...pendingTodo, workingTodo[index]];
-  //     setPendingTodo(newPendingTodoForWorking);
-  //     setWorkingTodo(newWorkingTodo);
-  //     toastNotify('Update');
-  //   },
-  //   [pendingTodo, workingTodo]
-  // );
-  // workingからcomplete
-  // const workingToComplete = useCallback(
-  //   (index) => {
-  //     const newWorkingTodo = [...workingTodo];
-  //     newWorkingTodo.splice(index, 1);
-  //     const newCompleteTodo = [...completeTodo, workingTodo[index]];
-  //     setWorkingTodo(newWorkingTodo);
-  //     setCompleteTodo(newCompleteTodo);
-  //     toastNotify('Update');
-  //   },
-  //   [completeTodo, workingTodo]
-  // );
+  const workingToPending = useCallback(
+    (index) => {
+      const newWorkingTodo = [...workingTodo];
+      newWorkingTodo.splice(index, 1);
+      const newPendingTodoForWorking = [...pendingTodo, workingTodo[index]];
+      setPendingTodo(newPendingTodoForWorking);
+      setWorkingTodo(newWorkingTodo);
+      // toastNotify('Update');
+    },
+    [pendingTodo, workingTodo]
+  );
+  // workingからcomplete;
+  const workingToComplete = useCallback(
+    (index) => {
+      const newWorkingTodo = [...workingTodo];
+      newWorkingTodo.splice(index, 1);
+      const newCompleteTodo = [...completeTodo, workingTodo[index]];
+      setWorkingTodo(newWorkingTodo);
+      setCompleteTodo(newCompleteTodo);
+      // toastNotify('Update');
+    },
+    [completeTodo, workingTodo]
+  );
 
   // pendingTodoへの処理
   // pendingからincomplete
-  // const pendingToIncomplete = useCallback(
-  //   (index) => {
-  //     const newPendingTodo = [...pendingTodo];
-  //     newPendingTodo.splice(index, 1);
-  //     const newIncompleteTodoBackFromPending = [
-  //       ...incompleteTodo,
-  //       pendingTodo[index],
-  //     ];
-  //     setIncompleteTodo(newIncompleteTodoBackFromPending);
-  //     setPendingTodo(newPendingTodo);
-  //     toastNotify('Update');
-  //   },
-  //   [incompleteTodo, pendingTodo]
-  // );
+  const pendingToIncomplete = useCallback(
+    (index) => {
+      const newPendingTodo = [...pendingTodo];
+      newPendingTodo.splice(index, 1);
+      const newIncompleteTodoBackFromPending = [
+        ...incompleteTodo,
+        pendingTodo[index],
+      ];
+      setIncompleteTodo(newIncompleteTodoBackFromPending);
+      setPendingTodo(newPendingTodo);
+      // toastNotify('Update');
+    },
+    [incompleteTodo, pendingTodo]
+  );
   // pendingからworking
-  // const pendingToWorking = useCallback(
-  //   (index) => {
-  //     const newPendingTodo = [...pendingTodo];
-  //     newPendingTodo.splice(index, 1);
-  //     const newWorkingTodoForPending = [...workingTodo, pendingTodo[index]];
-  //     setWorkingTodo(newWorkingTodoForPending);
-  //     setPendingTodo(newPendingTodo);
-  //     toastNotify('Update');
-  //   },
-  //   [pendingTodo, workingTodo]
-  // );
+  const pendingToWorking = useCallback(
+    (index) => {
+      const newPendingTodo = [...pendingTodo];
+      newPendingTodo.splice(index, 1);
+      const newWorkingTodoForPending = [...workingTodo, pendingTodo[index]];
+      setWorkingTodo(newWorkingTodoForPending);
+      setPendingTodo(newPendingTodo);
+      // toastNotify('Update');
+    },
+    [pendingTodo, workingTodo]
+  );
 
   // completeTodoへの処理
   // completeからincomplete
-  // const completeToIncomplete = useCallback(
-  //   (index) => {
-  //     const newCompleteTodo = [...completeTodo];
-  //     newCompleteTodo.splice(index, 1);
-  //     const newIncompleteTodoBackFromComplete = [
-  //       ...incompleteTodo,
-  //       completeTodo[index],
-  //     ];
-  //     setIncompleteTodo(newIncompleteTodoBackFromComplete);
-  //     setCompleteTodo(newCompleteTodo);
-  //     toastNotify('Update');
-  //   },
-  //   [completeTodo, incompleteTodo]
-  // );
+  const completeToIncomplete = useCallback(
+    (index) => {
+      const newCompleteTodo = [...completeTodo];
+      newCompleteTodo.splice(index, 1);
+      const newIncompleteTodoBackFromComplete = [
+        ...incompleteTodo,
+        completeTodo[index],
+      ];
+      setIncompleteTodo(newIncompleteTodoBackFromComplete);
+      setCompleteTodo(newCompleteTodo);
+      // toastNotify('Update');
+    },
+    [completeTodo, incompleteTodo]
+  );
   // completeから削除する処理
-  // const completeItemDelete = useCallback(
-  //   (index) => {
-  //     const newCompleteTodo = [...completeTodo];
-  //     newCompleteTodo.splice(index, 1);
-  //     setCompleteTodo(newCompleteTodo);
-  //     toastNotify('Delete');
-  //   },
-  //   [completeTodo]
-  // );
+  const completeItemDelete = useCallback(
+    (index) => {
+      const newCompleteTodo = [...completeTodo];
+      newCompleteTodo.splice(index, 1);
+      setCompleteTodo(newCompleteTodo);
+      // toastNotify('Delete');
+    },
+    [completeTodo]
+  );
 
   return {
     addToNewIncompleteTodo,
     incompleteToWorking,
     incompleteToPending,
-    // workingToPending,
-    // workingToComplete,
-    // pendingToIncomplete,
-    // pendingToWorking,
-    // completeToIncomplete,
-    // completeItemDelete,
+    workingToPending,
+    workingToComplete,
+    pendingToIncomplete,
+    pendingToWorking,
+    completeToIncomplete,
+    completeItemDelete,
     incomleteItemDelete,
   };
 };

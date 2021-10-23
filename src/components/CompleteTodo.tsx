@@ -1,59 +1,47 @@
 import React, { memo, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { incompleteTodoState } from './store/incompleteTodoState';
 
+import { completeTodoState } from './store/completeTodoState';
 import { useGetTodo } from '../hooks/useGetTodo';
 import { useMoveItemFunc } from '../hooks/useMoveItemFunc';
-
 import { PushButton } from './PushButton';
 
-export const IncompleteTodo = memo(() => {
+export const CompleteTodo = memo(() => {
   const { todos, getTodos } = useGetTodo();
-  const [incompleteTodo, setIncompleteTodo] =
-    useRecoilState(incompleteTodoState);
-  const { incompleteToWorking, incompleteToPending, incomleteItemDelete } =
-    useMoveItemFunc();
+  const [completeTodo, setCompleteTodo] = useRecoilState(completeTodoState);
+  const { completeToIncomplete, completeItemDelete } = useMoveItemFunc();
   useEffect(() => getTodos(), []);
   useEffect(() => {
-    if (todos[0]?.title === undefined || todos[1]?.title === undefined) {
-      console.log(todos[0]?.title);
-      console.log(todos[1]?.title);
+    if (todos[7]?.title === undefined || todos[8]?.title === undefined) {
+      console.log(todos[7]?.title);
+      console.log(todos[8]?.title);
       return;
     } else {
-      const initIncompleteTodo: Array<string> = [
-        todos[0]?.title,
-        todos[1]?.title,
-      ];
-      setIncompleteTodo(initIncompleteTodo);
+      const initPendingTodo: Array<string> = [todos[7]?.title, todos[8]?.title];
+      setCompleteTodo(initPendingTodo);
     }
   }, [todos]);
 
   return (
     <div className="bg-gray-50 rounded-md p-1 m-2">
       <p className="text-white text-lg text-center bg-blue-400 border-solid border4 border-blue-400 rounded-md w-1/4">
-        Todo List
+        Complete Todo List
       </p>
       <ul>
-        {incompleteTodo.map((todo: string, index: number) => {
+        {completeTodo.map((todo, index) => {
           return (
-            <li key={index}>
+            <li key={todo}>
               <div className="flex">
                 <p className="text-indigo-900 m-1.5">{todo}</p>
                 <PushButton
                   onClickAction={() => {
-                    incompleteToWorking(index);
+                    completeToIncomplete(index);
                   }}>
-                  Working
+                  Back Todo
                 </PushButton>
                 <PushButton
                   onClickAction={() => {
-                    incompleteToPending(index);
-                  }}>
-                  Pending
-                </PushButton>
-                <PushButton
-                  onClickAction={() => {
-                    incomleteItemDelete(index);
+                    completeItemDelete(index);
                   }}>
                   Delete
                 </PushButton>
@@ -66,4 +54,4 @@ export const IncompleteTodo = memo(() => {
   );
 });
 
-IncompleteTodo.displayName = 'IncompleteTodo';
+CompleteTodo.displayName = 'CompleteTodo';
