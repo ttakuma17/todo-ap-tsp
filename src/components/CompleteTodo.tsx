@@ -34,13 +34,13 @@ export const CompleteTodo = memo(() => {
               <div className="flex">
                 <p className="text-indigo-900 m-1.5">{todo}</p>
                 <PushButton
-                  onClickAction={() => {
+                  onClick={() => {
                     completeToIncomplete(index);
                   }}>
                   Back Todo
                 </PushButton>
                 <PushButton
-                  onClickAction={() => {
+                  onClick={() => {
                     completeItemDelete(index);
                   }}>
                   Delete

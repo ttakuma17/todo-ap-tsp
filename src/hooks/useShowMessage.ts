@@ -2,7 +2,7 @@ import toast from 'react-hot-toast';
 import { useCallback } from 'react';
 
 export const useShowMessage = () => {
-  const toastNotify = useCallback((action) => {
+  const toastNotify = useCallback((action: string) => {
     switch (action) {
       case 'Input':
         toast('Added new Todo');

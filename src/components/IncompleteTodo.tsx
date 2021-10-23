@@ -40,19 +40,19 @@ export const IncompleteTodo = memo(() => {
               <div className="flex">
                 <p className="text-indigo-900 m-1.5">{todo}</p>
                 <PushButton
-                  onClickAction={() => {
+                  onClick={() => {
                     incompleteToWorking(index);
                   }}>
                   Working
                 </PushButton>
                 <PushButton
-                  onClickAction={() => {
+                  onClick={() => {
                     incompleteToPending(index);
                   }}>
                   Pending
                 </PushButton>
                 <PushButton
-                  onClickAction={() => {
+                  onClick={() => {
                     incomleteItemDelete(index);
                   }}>
                   Delete

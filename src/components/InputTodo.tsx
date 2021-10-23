@@ -23,7 +23,7 @@ export const InputTodo = memo(() => {
             onChange={onChangeTodoText}
           />
           <PushButton
-            onClickAction={() => {
+            onClick={() => {
               addToNewIncompleteTodo();
             }}>
             Add

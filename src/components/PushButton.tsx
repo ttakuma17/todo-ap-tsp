@@ -2,17 +2,17 @@ import React, { memo, ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
-  onClickAction: () => void;
+  onClick: () => void;
 };
 
 export const PushButton = memo((props: Props) => {
-  const { children, onClickAction } = props;
+  const { children, onClick } = props;
   return (
     <>
       <button
         type="button"
         className="text-sm text-white rounded-full m-1 p-1 bg-gray-500 border-transparent hover:bg-blue-100 hover:text-blue-900"
-        onClick={onClickAction}>
+        onClick={onClick}>
         {children}
       </button>
     </>

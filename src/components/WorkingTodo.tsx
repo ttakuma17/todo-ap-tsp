@@ -34,13 +34,13 @@ export const WorkingTodo = memo(() => {
               <div className="flex">
                 <p className="text-indigo-900 m-1.5">{todo}</p>
                 <PushButton
-                  onClickAction={() => {
+                  onClick={() => {
                     workingToPending(index);
                   }}>
                   Pending
                 </PushButton>
                 <PushButton
-                  onClickAction={() => {
+                  onClick={() => {
                     workingToComplete(index);
                   }}>
                   Done
