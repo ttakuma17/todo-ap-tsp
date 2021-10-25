@@ -6,37 +6,57 @@
 
 1. TailwindCSS のインストール
    [Install Tailwind CSS with Create React App](https://tailwindcss.com/docs/guides/create-react-app)
-   　　- Include Tailwind in your CSS の手順でのエラー
-   　　　 Unknown at rule @tailwindcss(unknownAtRules) が表示される(ESLint)
-   　　- エラー回避のため以下記事を参照し、stylelint をインストールし、設定ファイルを定義
-   　　　[参考記事](https://sunday-morning.app/posts/2020-10-25-next-js-tailwindcss)
-   　　　 参考記事のうち対応した箇所は、"css.validate": false, のみ .vscode > settings.json へ記載
+
+   - Include Tailwind in your CSS の手順でのエラー
+
+   Unknown at rule @tailwindcss(unknownAtRules) が表示される(ESLint)
+
+   - エラー回避のため以下記事を参照し、stylelint をインストールし、設定ファイルを定義
+
+   [参考記事](https://sunday-morning.app/posts/2020-10-25-next-js-tailwindcss)
+
+   参考記事のうち対応した箇所は、"css.validate": false, のみ .vscode > settings.json へ記載
 
 1. react-router のインストール
+
    [react-router](https://github.com/remix-run/react-router)
+
    `yarn add react-router`と`yarn add @types/react-router --dev`を実行
 
 1. react-router-dom のインストール
+
    [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+
    `yarn add react-router-dom`と`yarn add @types/react-router-dom --dev`を実行
 
 1. HerosIcon のインストール
+
    [HerosIcon](https://github.com/tailwindlabs/heroicons)
+
    github の記載の通り、`npm install @heroicons/react`を実施
 
 1. HeadlessUI のインストール
+
    [HeadlessUI](https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-react)
+
    `yarn add @headlessui/react`のコマンドを実施
+
    Typescript で開発されているライブラリのため、追加の型定義ファイルは不要
 
 1. recoil のインストール
+
    [recoil](https://github.com/facebookexperimental/Recoil)
+
    `yarn add recoil`のコマンドを実施
+
    ライブラリに型定義ファイルが含まれている
 
 1. axios のインストール
+
    [axios](https://github.com/axios/axios)
+
    `yarn add axios`のコマンドを実施
+
    ライブラリに型定義が含まれている
 
 ## 今後修正したいところ
