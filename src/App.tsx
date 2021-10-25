@@ -8,10 +8,12 @@ import { Footer } from './components/Footer';
 export const App: VFC = () => {
   return (
     <>
-      <RecoilRoot>
-        <Header />
-        <Footer />
-      </RecoilRoot>
+      <div>
+        <RecoilRoot>
+          <Header />
+          <Footer />
+        </RecoilRoot>
+      </div>
     </>
   );
 };

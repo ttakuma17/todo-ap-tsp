@@ -1,102 +1,54 @@
+# Typescript×React の Todo アプリ
+
 ## ライブラリのインストール
 
+ライブラリの型定義については[Typescript 公式](https://www.typescriptlang.org/dt/search?search=)より検索
+
 1. TailwindCSS のインストール
-   基本的には以下手順に従い設定
-   Install Tailwind CSS with Create React App
-   https://tailwindcss.com/docs/guides/create-react-app
+   [Install Tailwind CSS with Create React App](https://tailwindcss.com/docs/guides/create-react-app)
+   　　- Include Tailwind in your CSS の手順でのエラー
+   　　　 Unknown at rule @tailwindcss(unknownAtRules) が表示される(ESLint)
+   　　- エラー回避のため以下記事を参照し、stylelint をインストールし、設定ファイルを定義
+   　　　[参考記事](https://sunday-morning.app/posts/2020-10-25-next-js-tailwindcss)
+   　　　 参考記事のうち対応した箇所は、"css.validate": false, のみ .vscode > settings.json へ記載
 
-2. Include Tailwind in your CSS の手順にて
-   Unknown at rule @tailwindcss(unknownAtRules) が表示されることを確認
-   エラー回避のため以下記事を参照し、stylelint をインストール
-   https://sunday-morning.app/posts/2020-10-25-next-js-tailwindcss
-   "css.validate": false, のみ.vscode > settings.json へ記載
+1. react-router のインストール
+   [react-router](https://github.com/remix-run/react-router)
+   `yarn add react-router`と`yarn add @types/react-router --dev`を実行
 
-3. 正常な挙動をすることを確認
-   TailwindCSS のセットアップは完了とし、マージする
+1. react-router-dom のインストール
+   [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+   `yarn add react-router-dom`と`yarn add @types/react-router-dom --dev`を実行
 
-4. WL.Header コンポーネントと Footer コンポーネントを作成する
+1. HerosIcon のインストール
+   [HerosIcon](https://github.com/tailwindlabs/heroicons)
+   github の記載の通り、`npm install @heroicons/react`を実施
 
-memo 化していると displayname が出てくるが、後ほどコンポーネントの最適化が必要
-react-router-dom が必要なのでライブラリインストール
+1. HeadlessUI のインストール
+   [HeadlessUI](https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-react)
+   `yarn add @headlessui/react`のコマンドを実施
+   Typescript で開発されているライブラリのため、追加の型定義ファイルは不要
 
-`yarn add react-router-dom`のインストール後
-`yarn add @types/react-router-dom --dev`で型定義ファイルをインストール
+1. recoil のインストール
+   [recoil](https://github.com/facebookexperimental/Recoil)
+   `yarn add recoil`のコマンドを実施
+   ライブラリに型定義ファイルが含まれている
 
-HerosIcon を利用しているので、インストールする
-`npm install @heroicons/react`
-https://github.com/tailwindlabs/heroicons
+1. axios のインストール
+   [axios](https://github.com/axios/axios)
+   `yarn add axios`のコマンドを実施
+   ライブラリに型定義が含まれている
 
-react-router-dom の型宣言エラーが出るな。。。。さっきインストールしたのに。。。
-Package.json にも存在することを確認
-→ react-router 自体がインストールされていなかったことでエラーが発生していた
+## 今後修正したいところ
 
-Example.tsx で HeadlessUI が必要なのでインストール
-https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-react
+- input が空の場合のエンターキーによる読み込みの制御 / 記入している場合はエンターキーで Submit 可能に変更する
+- グローバルステートとローカルステートの修正 → inputTodo をグローバルステートにしているがローカルステートとなっている
+- ディレクトリ構造の見直し 型定義フォルダを src 直下に変更すること
+- CSS を整える（レスポンシブ）
 
-<<<<<<< HEAD
-    // "eslint": "^8.0.1",
+## 機能追加アイデア
 
-    There might be a problem with the project dependency tree.
-
-It is likely not a bug in Create React App, but something you need to fix locally.
-
-The react-scripts package provided by Create React App requires a dependency:
-
-"eslint": "^7.11.0"
-
-Don't try to install it manually: your package manager does it automatically.
-However, a different version of eslint was detected higher up in the tree:
-
-/Users/taniguutakuma/app-develop/todo-ap-tsp/node_modules/eslint (version: 8.0.1)
-
-Manually installing incompatible versions is known to cause hard-to-debug issues.
-
-If you would prefer to ignore this check, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.
-That will permanently disable this message but you might encounter other issues.
-
-To fix the dependency tree, try following the steps below in the exact order:
-
-1. Delete package-lock.json (not package.json!) and/or yarn.lock in your project folder.
-2. Delete node_modules in your project folder.
-3. Remove "eslint" from dependencies and/or devDependencies in the package.json file in your project folder.
-4. Run npm install or yarn, depending on the package manager you use.
-
-In most cases, this should be enough to fix the problem.
-If this has not helped, there are a few other things you can try:
-
-5. If you used npm, install yarn (http://yarnpkg.com/) and repeat the above steps with it instead.
-   This may help because npm has known issues with package hoisting which may get resolved in future versions.
-
-6. Check if /Users/taniguutakuma/app-develop/todo-ap-tsp/node_modules/eslint is outside your project directory.
-   For example, you might have accidentally installed something in your home folder.
-
-7. Try running npm ls eslint in your project folder.
-   This will tell you which other package (apart from the expected react-scripts) installed eslint.
-
-If nothing else helps, add SKIP_PREFLIGHT_CHECK=true to an .env file in your project.
-That would permanently disable this preflight check in case you want to proceed anyway.
-
-P.S. We know this message is long but please read the steps above :-) We hope you find them helpful!
-
-error Command failed with exit code 1.
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
-=======
-一旦、IncompleteTodo.tsx PushButton.tsx の完成を目指す
-その後他のコンポーネントに展開する
-
-recoil のインストール
-`yarn add recoil`
-https://github.com/facebookexperimental/Recoil
-
-Recoil × Typescript の記事
-https://zenn.dev/nekoniki/scraps/e2ad516d7da7d3
-selector を使えば、Atom に初期値を設定できるはず
-
-axios のインストール
-`yarn add axios`
-https://github.com/axios/axios
-
-axios の型定義
-https://qiita.com/keyakko/items/ec536545d2faa9cabc84
-useGetTodo のレスポンスデータへの型定義が必要になる
->>>>>>> 4adc7a3563ab423d6fb3d4170050100aa8798b74
+- Todo の削除時には、確認のモーダルを表示させて、確認ボタンを押したら削除する
+- 各 Todo に追加できる個数を制限する(PendingTodo は 5 個までしか追加できないようにするなど)
+- API データを取得中はローディング画面を実装する
+- Example コンポーネントに表示する文章を変更する

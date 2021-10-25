@@ -24,6 +24,7 @@ export const useMoveItemFunc = () => {
   // 既存のアイテム移動系の処理
   // incompleteTodoへの処理
   // incompleteからworkingへ移動する処理を実装する
+  // inputの値をグローバルステートにしているが、ローカルステートで良い
   const addToNewIncompleteTodo = useCallback(() => {
     if (todoText === '') {
       toastNotify('InputNone');
